@@ -6,11 +6,11 @@
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 14:16:30 by shattori          #+#    #+#             */
-/*   Updated: 2024/12/03 17:22:11 by shattori         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:50:27 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 size_t	ft_strlen(const char *in)
 {

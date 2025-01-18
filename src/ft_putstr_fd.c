@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 14:35:48 by shattori          #+#    #+#             */
-/*   Updated: 2024/12/05 22:53:58 by shattori         ###   ########.fr       */
+/*   Created: 2024/11/05 14:27:05 by shattori          #+#    #+#             */
+/*   Updated: 2025/01/18 15:42:57 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_putstr_fd(char *s, int fd, t_tab *tab)
 {
-	char	c;
-	int		len;
+	int	len;
 
-	len = 0;
-	if (n == -2147483648)
+	if (!s)
 	{
-		write(fd, "-2147483648", 11);
-		len = 11;
-		return (len);
+		if (ft_confirm_write(fd, "(null)", 6, tab) == -1)
+			return (-1);
+		return (6);
 	}
-	if (n < 0)
+	len = 0;
+	while (*s)
 	{
-		write(fd, "-", 1);
-		n = -n;
+		if (ft_confirm_write(fd, s++, 1, tab) == -1)
+			return (-1);
 		len++;
 	}
-	if (n >= 10)
-	{
-		len += ft_putnbr_fd(n / 10, fd);
-	}
-	n %= 10;
-	c = n + '0';
-	len++;
-	write(fd, &c, 1);
 	return (len);
 }

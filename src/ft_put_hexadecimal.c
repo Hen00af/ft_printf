@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_decimal_to_hexadecimal.c                        :+:      :+:    :+:   */
+/*   ft_put_hexadecimal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shattori <shattori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:45:00 by shattori          #+#    #+#             */
-/*   Updated: 2024/12/13 21:11:27 by shattori         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:07:53 by shattori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../include/ft_printf.h"
 
 static int	hex_length(unsigned int variable)
 {
@@ -57,6 +55,19 @@ char	*ft_decimal_to_hexadecimal(unsigned int variable, int uppercase)
 	else
 		ft_recursive_hex(variable, result, len - 1, hex_digits);
 	return (result);
+}
+
+int	ft_put_hexadecimal(unsigned int value, int uppercase, t_tab *tab)
+{
+	char	*hex_str;
+	int		len;
+
+	hex_str = ft_decimal_to_hexadecimal(value, uppercase);
+	if (!hex_str)
+		return (-1);
+	len = ft_putstr_fd(hex_str, 1, tab);
+	free(hex_str);
+	return (len);
 }
 
 // int	main(void)
